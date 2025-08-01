@@ -11,13 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("QR_Track")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4b7a157b3ef739cac22ad88be7971ab8d8dd0ee")]
-[assembly: System.Reflection.AssemblyProductAttribute("QR_Track")]
-[assembly: System.Reflection.AssemblyTitleAttribute("QR_Track")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: Microsoft.AspNetCore.Mvc.ApplicationParts.ApplicationPartAttribute("X.PagedList.Mvc.Core")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
 

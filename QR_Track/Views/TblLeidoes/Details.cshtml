@@ -1,0 +1,30 @@
+﻿@model QR_Track.Models.TblLeido
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TblLeido</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdQr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdQr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DtLeido)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DtLeido)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

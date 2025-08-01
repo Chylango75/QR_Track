@@ -1,36 +1,30 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QR_Track.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using X.PagedList;
 
 namespace QR_Track.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class PersonaController : Controller
+    public class TblLeidoesController : Controller
     {
         private readonly QrTrackDbContext _context;
 
-        public PersonaController(QrTrackDbContext context)
+        public TblLeidoesController(QrTrackDbContext context)
         {
             _context = context;
         }
 
-        // GET: Persona
-        public IActionResult Index(int? page)
+        // GET: TblLeidoes
+        public async Task<IActionResult> Index()
         {
-            var pageNumber = page ?? 1;
-            var pageSize = 20;
-            var list = _context.TblPersonas.ToList().ToPagedList(pageNumber, pageSize);
-            return View(list);
+            return View(await _context.TblLeidos.ToListAsync());
         }
 
-        // GET: Persona/Details/5
+        // GET: TblLeidoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,39 +32,39 @@ namespace QR_Track.Controllers
                 return NotFound();
             }
 
-            var tblPersona = await _context.TblPersonas
+            var tblLeido = await _context.TblLeidos
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (tblPersona == null)
+            if (tblLeido == null)
             {
                 return NotFound();
             }
 
-            return View(tblPersona);
+            return View(tblLeido);
         }
 
-        // GET: Persona/Create
+        // GET: TblLeidoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Persona/Create
+        // POST: TblLeidoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre")] TblPersona tblPersona)
+        public async Task<IActionResult> Create([Bind("Id,IdQr,DtLeido")] TblLeido tblLeido)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tblPersona);
+                _context.Add(tblLeido);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(tblPersona);
+            return View(tblLeido);
         }
 
-        // GET: Persona/Edit/5
+        // GET: TblLeidoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,22 +72,22 @@ namespace QR_Track.Controllers
                 return NotFound();
             }
 
-            var tblPersona = await _context.TblPersonas.FindAsync(id);
-            if (tblPersona == null)
+            var tblLeido = await _context.TblLeidos.FindAsync(id);
+            if (tblLeido == null)
             {
                 return NotFound();
             }
-            return View(tblPersona);
+            return View(tblLeido);
         }
 
-        // POST: Persona/Edit/5
+        // POST: TblLeidoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre")] TblPersona tblPersona)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdQr,DtLeido")] TblLeido tblLeido)
         {
-            if (id != tblPersona.Id)
+            if (id != tblLeido.Id)
             {
                 return NotFound();
             }
@@ -102,12 +96,12 @@ namespace QR_Track.Controllers
             {
                 try
                 {
-                    _context.Update(tblPersona);
+                    _context.Update(tblLeido);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TblPersonaExists(tblPersona.Id))
+                    if (!TblLeidoExists(tblLeido.Id))
                     {
                         return NotFound();
                     }
@@ -118,10 +112,10 @@ namespace QR_Track.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tblPersona);
+            return View(tblLeido);
         }
 
-        // GET: Persona/Delete/5
+        // GET: TblLeidoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -129,34 +123,34 @@ namespace QR_Track.Controllers
                 return NotFound();
             }
 
-            var tblPersona = await _context.TblPersonas
+            var tblLeido = await _context.TblLeidos
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (tblPersona == null)
+            if (tblLeido == null)
             {
                 return NotFound();
             }
 
-            return View(tblPersona);
+            return View(tblLeido);
         }
 
-        // POST: Persona/Delete/5
+        // POST: TblLeidoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tblPersona = await _context.TblPersonas.FindAsync(id);
-            if (tblPersona != null)
+            var tblLeido = await _context.TblLeidos.FindAsync(id);
+            if (tblLeido != null)
             {
-                _context.TblPersonas.Remove(tblPersona);
+                _context.TblLeidos.Remove(tblLeido);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TblPersonaExists(int id)
+        private bool TblLeidoExists(int id)
         {
-            return _context.TblPersonas.Any(e => e.Id == id);
+            return _context.TblLeidos.Any(e => e.Id == id);
         }
     }
 }

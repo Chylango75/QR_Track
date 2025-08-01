@@ -1,0 +1,94 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList;
+@using X.PagedList.Mvc.Core.Common
+
+@model IPagedList<TblQr>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Lista QR Generados</h3>
+
+<div class="border">
+    <br />
+    <div class="m-2">
+        <h3>Buscar QR Generado</h3>
+        <input type="text" id="qrGenerado" name="qrGenerado" placeholder="Texto en QR" />
+        <label id="lblSearch"></label> &nbsp; - &nbsp;
+        <label id="lblIdSearch"></label>
+        <br />
+    </div>
+    <br />
+</div>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Id de la persona
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPersona)
+            </td>
+            <td>
+                @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+     $("#qrGenerado").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/QRs/QRsGetN',
+                headers: {
+                    "RequestVerificationToken":
+                        $('input[name="__RequestVerificationToken"]').val()
+                },
+                data: { "term": request.term },
+                dataType: "json",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        console.log(data)
+                        return {
+                            label: item.descripcion,
+                            value: item.id,
+                        };
+                    }))
+                },
+                error: function (xhr, textStatus, error) {
+                    alert(xhr.statusText);
+                },
+                failure: function (response) {
+                    alert("failure " + response.responseText);
+                }
+            });
+        },
+        select: function (e, ui) {
+            $("#lblSearch").text(ui.item.value);
+            $("#lblIdSearch").text(ui.item.label);
+            $("#inquiName").val('');
+            return false;
+        },
+        minLength: 1
+    });
+</script>

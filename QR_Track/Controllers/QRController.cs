@@ -100,11 +100,11 @@ namespace QR_Track.Controllers
             }
         }
 
-        public JsonResult PersonasGetN(string texto)
+        public JsonResult PersonasGetN(string term)
         {
             var lst = context.TblPersonas.ToList()
                 //.Where(p => string.IsNullOrEmpty(texto) || p.Nombre.Contains(texto))
-                .Where(p => p.Nombre.ToLower().Contains(texto.ToLower() ) )
+                .Where(p => p.Nombre.ToLower().Contains(term.ToLower() ) )
                 .ToList();
             return Json(lst);
         }

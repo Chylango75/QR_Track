@@ -1,0 +1,32 @@
+﻿@model QR_Track.Models.TblQr
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Eliminar</h3>
+
+<h3>¿Está seguro de eliminar?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdPersona)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdPersona)
+        </dd>
+    </dl>
+    
+    <form asp-action="Eliminar">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Lista QRs Generados</a>
+    </form>
+</div>

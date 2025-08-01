@@ -56,6 +56,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/Qrs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/Qrs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/Qrs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/Qrs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/Qrs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/QR/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUVJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +86,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/TblLeidoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsTGVpZG9lc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/TblLeidoes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsTGVpZG9lc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/TblLeidoes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsTGVpZG9lc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/TblLeidoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsTGVpZG9lc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/TblLeidoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsTGVpZG9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Renn/Dev/MVC/QR_Track/QR_Track/Views/_ViewImports.cshtml]
