@@ -1,0 +1,18 @@
+﻿
+<h3>Generar QR</h3>
+
+
+@{
+    ViewData["Title"] = "Generador de QR";
+}
+<h2>Generador de Código QR</h2>
+<form method="get" asp-action="GenerarQR">
+    <input type="text" name="texto" placeholder="Texto para el QR" required />
+    <button type="submit">Generar QR</button>
+</form>
+
+@if (Context.Request.Query.ContainsKey("texto"))
+{
+    <h3>Resultado:</h3>
+    <img src="@Url.Action("GenerarQR", "Home", new { texto = Context.Request.Query["texto"] })" alt="QR generado" />
+}

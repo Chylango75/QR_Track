@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Lector QR";
+}
+
+<h2>Generador de Código QR</h2>
+
+<form id="formGenerarQR">
+    <input type="text" name="textoQR" id="textoQR" placeholder="Texto para el QR" required />
+    <br /><br />
+    <input type="text" id="personaName" name="personaName" style="margin-block-end: 30px" />
+    <input required type="text" id="personaId" name="personaId" style="max-width: 50px" disabled />
+    <br />
+    <br />
+    <button type="submit" class="btn btn-sm btn-info" id="btnSubmit">Generar QR</button>
+    <br />
+    <input type="checkbox" id="SaveDb" checked />
+    <label for="SaveDb">Guardar en DB al Generar</label>
+</form>
+
+<input type="button" value="Iniciar" class="btn btn-sm btn-secondary" onclick="location.reload();" id="btnIniciar" style="display: none;" />
+
+<div id="qrImagen"></div>
+
+<hr />
+
+<h2>Lector de Código QR</h2>
+<div id="reader" style="width:300px"></div>
+<br />
+<br />
+<input type="button" value="Iniciar Lector" onclick="ReiniciaLectura()" class="btn btn-sm btn-info" />
+<div id="resultado"></div>
+
+<br> <br />
+<a href="@Url.Action("Logout", "Home")" class="btn btn-sm btn-danger">Salir</a>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+</form>
+
+@if (Context.Request.Query.ContainsKey("texto"))
+{
+    <h3>Resultado:</h3>
+    <img src="@Url.Action("GenerarQR", "Home", new { texto = Context.Request.Query["texto"] })" alt="QR generado" />
+}
+
+@section Scripts {
+    <script>
+        $('#btnIniciar').hide()
+
+
+        //  Crear Imagen QR
+        document.getElementById('formGenerarQR').addEventListener('submit', function (e) {
+            let id = $('#personaId').val();
+            let texto = $('#textoQR').val();
+            let toDb = $('#SaveDb').is(":checked") ? 1 : 0;
+
+            e.preventDefault();
+
+            if(id === undefined || id == '' ){
+                alert("Error en Persona");
+                return;
+            }
+
+            const url = '@Url.Action("GenerarQR", "QR")' + '?texto=' + texto + '&id=' + id + '&toDb=' + toDb;
+            document.getElementById('qrImagen').innerHTML = '<img src="' + url + '" alt="QR generado" />';
+            $('#btnSubmit').prop('disabled', true);
+            $('#btnIniciar').show();
+        });
+    </script>
+
+    <script src="~/js/readerqr.js"></script>
+    <script src="~/js/qr-reader.js"></script>
+    <script>
+
+        // Autocomplete
+           $("#personaName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/QR/PersonasGetN',
+                    headers: {
+                        "RequestVerificationToken":
+                            $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    data: { "texto": request.term },
+                    dataType: "json",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.nombre,
+                                value: item.id
+                            };
+                        }))
+                    },
+                    error: function (xhr, textStatus, error) {
+                        alert(xhr.statusText);
+                    },
+                    failure: function (response) {
+                        alert("failure " + response.responseText);
+                    }
+                });
+            },
+            select: function (e, ui) {
+                $("#personaName").val(ui.item.label);
+                $("#personaId").val(ui.item.value);
+                return false;
+            },
+            minLength: 1
+        });
+
+        function ReiniciaLectura() {
+            iniciarLectorQR("reader", function(qrCodeMessage) {
+                document.getElementById("resultado").innerText = "Código QR: " + qrCodeMessage;
+            });
+        }
+
+    </script>
+}
